@@ -12,16 +12,14 @@ import (
 
 var (
 	apiClient = client.NewAPIClient(nil,
-		settings.NewHttpSettings("http://localhost:8080/api/"))
+		settings.NewHttpSettings("http://localhost:8080/api"))
 	taskRunner = worker.NewTaskRunnerWithApiClient(apiClient)
 )
 
 func main() {
 
 	taskRunner.StartWorker("task_11", task.Task11, 1, time.Millisecond*100)
-
 	logrus.Info("Started Workers")
-
 	taskRunner.WaitWorkers()
 
 }
